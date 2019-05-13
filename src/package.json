@@ -1,0 +1,18 @@
+{
+  "name": "scrap-ton-vie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/ojathelonius/scrap-ton-vie"
+  },
+  "author": "louis@johanet.fr",
+  "license": "MIT",
+  "dependencies": {
+    "ol": "^5.3.2"
+  }
+}

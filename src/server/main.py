@@ -19,6 +19,13 @@ def default():
     return 'API'
 
 # No ORM needed for now
+@app.route("/offers")
+def offers():
+    cur.execute('WITH offers AS (SELECT id, civiweb_id, position, company, country, city, lat, lon, salary FROM offer) SELECT json_agg(row_to_json(offers)) FROM offers')
+    result = cur.fetchone()
+    conn.commit()
+    return json.dumps(result[0])
+
 @app.route("/countries")
 def countries():
     cur.execute('WITH countries AS (SELECT UPPER(country) AS country FROM offer GROUP BY UPPER(country) ORDER BY country) SELECT json_agg(INITCAP(country)) FROM countries')

@@ -2,6 +2,23 @@
 
 # Scrap ton VIE
 
+
+## Deployment
+
+### Development
+
+Launch the virtual environment with :
+
+```bash
+pipenv install
+```
+
+Then :
+
+```bash
+FLASK_APP=main.py flask run
+```
+
 ## Play with data 
 
 ### Calculate VIE frequency percentage per country

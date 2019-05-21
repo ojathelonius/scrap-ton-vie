@@ -13,6 +13,8 @@ CREATE TABLE offer(
     description TEXT
 );
 
+
+-- IF USING GEOSERVER
 -- Initialize PostGIS plugin on the given database
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;

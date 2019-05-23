@@ -17,6 +17,10 @@ cur = conn.cursor()
 # Reverse geocoding needs to be enabled for the given API key
 gmaps = googlemaps.Client(key=config['credentials']['api_key'])
 
+# Empty table
+cur.execute('TRUNCATE offer')
+conn.commit()
+
 # Browsing through pages (currently around 238)
 for page_id in range(1, 240):
 
@@ -66,4 +70,9 @@ for page_id in range(1, 240):
     # Commit transaction for every page
     conn.commit()
 
+print('Updating geometry...')
+cur.execute('UPDATE offer SET geom = ST_Transform(ST_SetSRID(ST_Point(lon, lat), 4326), 3857)')
+conn.commit()
+
 conn.close()
+print('All done.')

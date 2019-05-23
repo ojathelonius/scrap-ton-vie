@@ -12,6 +12,7 @@ requests = "*"
 psycopg2 = "*"
 googlemaps = "*"
 flask = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.7"

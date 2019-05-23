@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, make_response
+from flask_cors import CORS
 import psycopg2
 import configparser
 
 # Flask app
 app = Flask(__name__)
+CORS(app)
 
 # Fetching configuration
 config = configparser.ConfigParser()
@@ -21,7 +23,35 @@ def default():
 # No ORM needed for now
 @app.route("/offers")
 def offers():
-    cur.execute('WITH offers AS (SELECT id, civiweb_id, position, company, country, city, lat, lon, salary FROM offer) SELECT json_agg(row_to_json(offers)) FROM offers')
+    sql = """
+        SELECT row_to_json(fc)
+        FROM (
+            SELECT
+                'FeatureCollection' AS "type",
+                array_to_json(array_agg(f)) AS "features"
+            FROM (
+                SELECT
+                    'Feature' AS "type",
+                    ST_ASGeoJSON(geom)::json AS "geometry",
+                    (
+                        SELECT row_to_json(t)
+                        FROM (
+                            SELECT
+                                position,
+                                company,
+                                country,
+                                city,
+                                salary
+                        ) t
+                    ) AS "properties"
+                FROM offer
+                WHERE
+                    lat IS NOT null
+                    OR lon IS NOT null
+            ) AS f
+        ) AS fc;  
+    """
+    cur.execute(sql)
     result = cur.fetchone()
     conn.commit()
     return make_response(jsonify(result[0]), 200)

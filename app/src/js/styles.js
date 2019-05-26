@@ -26,6 +26,22 @@ const FeatureStyles = {
     'HighSalaryStyle': SalaryStyle('#ea3600')
 };
 
+// 
+/**
+ * Calculate color scale for each salary
+ * Disabled for performance reasons (recalculates color for each salary, could be fixed by caching results)
+ * @param {Number} salary 
+ */
+function calculateSalaryStyle(salary) {
+    let percentage = (salary - minSalary) / maxSalary;
+    let hue = (percentage * (0 - 60)) + 60;
+    return SalaryStyle(`hsl(${hue}, 100%, 50%)`);
+}
+
+/**
+ * Basic overlay shown on hover
+ * @param {ol/Feature} feature 
+ */
 const BasicOverlay = (feature) => new Overlay({
     id: 'basicOverlay',
     element: document.querySelector('#popup'),

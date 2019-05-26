@@ -41,7 +41,8 @@ def offers():
                                 company,
                                 country,
                                 city,
-                                salary
+                                salary,
+                                civiweb_id
                         ) t
                     ) AS "properties"
                 FROM offer

@@ -86,6 +86,7 @@ export function showBasicFeatureInfo(event) {
     });
     if (feature) {
         overlayContainer.innerHTML = buildHtmlFromFeature(feature.getProperties());
+        overlayContainer.onclick = () => onOverlayClick(feature.getProperties().civiweb_id);
         this.getOverlayById('basicOverlay').setPosition(feature.getGeometry().getCoordinates());
         this.getTargetElement().style.cursor = 'pointer';
     } else if (this.getTargetElement().style.cursor == 'pointer') {
@@ -101,6 +102,12 @@ export function showBasicFeatureInfo(event) {
 function buildHtmlFromFeature(properties) {
     return `
         <h3>${properties.position}</h3>
-        <div>${properties.salary}</div>
+        <div>Company: ${properties.company}</div>
+        <div>Location: ${properties.city}, ${properties.country}</div>
+        <div>Salary: ${properties.salary}€</div>
     `;
+}
+
+function onOverlayClick(civiwebId) {
+    window.open(`https://www.civiweb.com/FR/offre/${civiwebId}.aspx`, '_blank');
 }

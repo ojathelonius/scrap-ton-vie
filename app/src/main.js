@@ -3,7 +3,8 @@ import '@babel/polyfill';
 import {
     initMap,
     updateOffers
-} from './functions';
+} from './js/functions';
+import './scss/main.scss';
 
 var map = initMap();
 

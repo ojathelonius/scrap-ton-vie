@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: './src/main.js',
@@ -12,6 +13,12 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: "babel-loader"
+        }, {
+            test: /\.scss$/,
+            exclude: /node_modules/,
+            use: [
+                MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
+            ]
         }]
     },
     devServer: {
@@ -19,5 +26,10 @@ module.exports = {
         compress: true,
         port: 3000,
         writeToDisk: true
-    }
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'scrap-ton-vie.css',
+        })
+    ]
 };

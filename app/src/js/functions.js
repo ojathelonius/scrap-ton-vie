@@ -15,6 +15,9 @@ import {
 import {
     get
 } from './api';
+import {
+    FeatureStyles
+} from './styles';
 
 /**
  * Update offers
@@ -26,9 +29,25 @@ export async function updateOffers(map) {
         features: (new GeoJSON()).readFeatures(response.data)
     });
     var vectorLayer = new VectorLayer({
-        source: vectorSource
+        source: vectorSource,
+        style: offerStyle
     });
     map.addLayer(vectorLayer);
+}
+
+/**
+ * Quantile thresholds are calculated from the database, see README.MD
+ * @param {*} feature 
+ */
+function offerStyle(feature) {
+    let properties = feature.getProperties();
+    if (properties.salary < 2049) {
+        return FeatureStyles.LowSalaryStyle;
+    } else if (properties.salary > 2468) {
+        return FeatureStyles.HighSalaryStyle;
+    } else {
+        return FeatureStyles.MediumSalaryStyle;
+    }
 }
 
 /**
@@ -44,8 +63,8 @@ export function initMap() {
         ],
         view: new View({
             projection: 'EPSG:3857',
-            center: [0, 0],
-            zoom: 2
+            center: [782715.169640, 6203017.719399],
+            zoom: 4
         })
     });
 }

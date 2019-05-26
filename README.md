@@ -35,3 +35,8 @@ SELECT country, UPPER(city), salary FROM offer
 GROUP BY salary, UPPER(city), country
 ORDER BY salary DESC
 ```
+
+### Calculate n-quantiles 
+```sql
+SELECT salary, ntile(n) OVER (ORDER BY salary) AS quantile FROM offer GROUP BY salary;
+```

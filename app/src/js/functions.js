@@ -87,6 +87,10 @@ export function showBasicFeatureInfo(event) {
     if (feature) {
         overlayContainer.innerHTML = buildHtmlFromFeature(feature.getProperties());
         this.getOverlayById('basicOverlay').setPosition(feature.getGeometry().getCoordinates());
+        this.getTargetElement().style.cursor = 'pointer';
+    } else if (this.getTargetElement().style.cursor == 'pointer') {
+        // Only change back cursor if it is a pointer
+        this.getTargetElement().style.cursor = '';
     }
 }
 

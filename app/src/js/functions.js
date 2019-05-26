@@ -16,8 +16,13 @@ import {
     get
 } from './api';
 import {
-    FeatureStyles
+    FeatureStyles,
+    BasicOverlay
 } from './styles';
+
+
+// Only look for overlayContainer in DOM once
+const overlayContainer = document.querySelector('#popup');
 
 /**
  * Update offers
@@ -37,7 +42,7 @@ export async function updateOffers(map) {
 
 /**
  * Quantile thresholds are calculated from the database, see README.MD
- * @param {*} feature 
+ * @param {ol/Feature} feature 
  */
 function offerStyle(feature) {
     let properties = feature.getProperties();
@@ -51,7 +56,7 @@ function offerStyle(feature) {
 }
 
 /**
- * Initialize and return a new Map object
+ * Initialize and return a new Map object, with a shared pop-up overlay object
  */
 export function initMap() {
     return new Map({
@@ -65,6 +70,33 @@ export function initMap() {
             projection: 'EPSG:3857',
             center: [782715.169640, 6203017.719399],
             zoom: 4
-        })
+        }),
+        overlays: [BasicOverlay()]
     });
+}
+
+/**
+ * Show feature informations in an overlay
+ */
+export function showBasicFeatureInfo(event) {
+    let feature = this.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
+        if (feature) {
+            return feature;
+        }
+    });
+    if (feature) {
+        overlayContainer.innerHTML = buildHtmlFromFeature(feature.getProperties());
+        this.getOverlayById('basicOverlay').setPosition(feature.getGeometry().getCoordinates());
+    }
+}
+
+/**
+ * Build feature HTML information from its properties
+ * @param {Object} properties 
+ */
+function buildHtmlFromFeature(properties) {
+    return `
+        <h3>${properties.position}</h3>
+        <div>${properties.salary}</div>
+    `;
 }

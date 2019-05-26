@@ -4,6 +4,7 @@ import {
     Style,
     Circle
 } from 'ol/style.js';
+import Overlay from 'ol/Overlay.js';
 
 // Setting constant styles so we don't have to compute a new style everytime
 const SalaryStyle = (color) => new Style({
@@ -25,7 +26,16 @@ const FeatureStyles = {
     'HighSalaryStyle': SalaryStyle('#ea3600')
 };
 
+const BasicOverlay = (feature) => new Overlay({
+    id: 'basicOverlay',
+    element: document.querySelector('#popup'),
+    autoPan: true,
+    autoPanAnimation: {
+        duration: 250
+    }
+});
 
 export {
-    FeatureStyles
+    FeatureStyles,
+    BasicOverlay
 };

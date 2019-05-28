@@ -13,6 +13,11 @@ CREATE TABLE offer(
     description TEXT
 );
 
+-- Grant proper privileges
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public to user;
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public to user;
+
 
 -- Initialize PostGIS plugin on the given database
 CREATE EXTENSION postgis;

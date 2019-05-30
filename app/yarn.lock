@@ -1112,6 +1112,10 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
+bulma@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
+
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -4372,13 +4376,6 @@ strip-indent@^1.0.1:
 strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
-
-style-loader@^0.23.1:
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.23.1.tgz#cb9154606f3e771ab6c4ab637026a1049174d925"
-  dependencies:
-    loader-utils "^1.1.0"
-    schema-utils "^1.0.0"
 
 supports-color@^2.0.0:
   version "2.0.0"

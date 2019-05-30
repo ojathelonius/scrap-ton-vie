@@ -101,8 +101,8 @@ export function showBasicFeatureInfo(event) {
  */
 function buildHtmlFromFeature(properties) {
     return `
-        <h3>${properties.position}</h3>
-        <div>Company: ${properties.company}</div>
+        <h5 class="title is-5">${properties.position}</h5>
+        <h6 class="subtitle is-6">${properties.company}</h6>
         <div>Location: ${properties.city}, ${properties.country}</div>
         <div>Salary: ${properties.salary}€</div>
     `;

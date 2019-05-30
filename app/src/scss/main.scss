@@ -1,7 +1,10 @@
-html, body {
+@import "node_modules/bulma/bulma";
+html,
+body {
     margin: 0;
     height: 100%;
     background-color: white;
+    overflow-y: auto;
 }
 
 body {
@@ -9,31 +12,26 @@ body {
     flex-direction: column;
 }
 
-#map {
-    margin: 0 10px 10px 10px;
-    border-radius: 4px;
-    box-shadow: 0px 0px 4px #0000006e;
-    overflow: hidden;
-    flex: 1;
+.box {
+    &.title-box {
+        display: flex;
+        justify-content: center;
+        border-radius: 0;
+        margin-bottom: 0;
+        z-index: 2;
+    }
 }
 
-.main-title {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    background-color: white;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 4px;
-    color: #3a3a3a;
-    box-shadow: 0px 0px 4px #0000006e;
+#map {
+    flex: 1;
+    overflow: hidden;
 }
 
 .ol-popup {
     position: absolute;
     background-color: white;
-    -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #cccccc;
@@ -41,8 +39,8 @@ body {
     left: -50px;
     min-width: 280px;
     cursor: pointer;
-
-    &:after, &:before {
+    &:after,
+    &:before {
         top: 100%;
         border: solid transparent;
         content: " ";
@@ -51,7 +49,6 @@ body {
         position: absolute;
         pointer-events: none;
     }
-
     &:after {
         border-top-color: white;
         border-width: 10px;
@@ -65,7 +62,7 @@ body {
         margin-left: -11px;
     }
 
-    h3 {
-        margin: 5px 0px;
+    .subtitle {
+        margin-bottom: 0.5rem;
     }
-  }
+}

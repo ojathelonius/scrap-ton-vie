@@ -2,3 +2,4 @@ app/dist
 server/dist
 .vscode
 node_modules
+*.env

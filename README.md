@@ -2,12 +2,9 @@
 
 # Scrap ton VIE
 
+## Development
 
-## Deployment
-
-### Development
-
-#### Front-end
+### Front-end
 
 Install dependencies :
 
@@ -20,7 +17,7 @@ Launch the development server with :
 npm run watch
 ```
 
-#### Back-end
+### Back-end
 ```bash
 npm install
 ```
@@ -47,12 +44,12 @@ username = my_username
 password = my_password
 ```
 
-### Production
-#### Front-end
+## Production
+### Front-end
 
 In production, use `npm run build` then serve the index.html with the dist folder with any web server.
 
-#### Back-end
+### Back-end
 
 Run the scrapper as a CRON job.
 Inclure full paths to avoid $PATH errors, and include stderr in the log file.

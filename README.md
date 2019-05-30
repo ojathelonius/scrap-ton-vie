@@ -2,6 +2,8 @@
 
 # Scrap ton VIE
 
+Scrap ton VIE aims at providing a convenient way to find VIE job offers. A development version lives at : https://vie.johanet.fr/
+
 ## Development
 
 ### Front-end

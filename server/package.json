@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir dist --copy-files",
-    "start": "node dist"
+    "start": "node -r dotenv/config dist"
   },
   "author": "",
   "license": "MIT",

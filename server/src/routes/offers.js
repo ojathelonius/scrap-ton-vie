@@ -7,6 +7,11 @@ export default () => {
     let offers = Router();
 
     offers.get('/', async (req, res, next) => {
+
+        // Retrieve params and lowercase
+        let params = req.query.params && req.query.params.split(',').map(element => element.toLowerCase());
+
+        // Dataset size allows not using full text search from Postgres
         const result = await pg_client.query(`
                 SELECT
                     'FeatureCollection' AS "type",
@@ -29,12 +34,17 @@ export default () => {
                         ) AS "properties"
                     FROM offer
                     WHERE
-                        lat IS NOT null
-                        OR lon IS NOT null
+                        (lat IS NOT null
+                        OR lon IS NOT null)
+                    ${params ? 
+                        `AND LOWER(description) SIMILAR TO '%(' || ${params.map((element, index) => `$${(index+1)}`).join(` || '|' || `)} || ')%'`
+                    : ''}
                 ) AS f
-        `);
+        `, params);
         res.send(result.rows[0]);
     });
+
+
 
     return offers;
 }

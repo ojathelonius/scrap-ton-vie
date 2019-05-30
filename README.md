@@ -7,17 +7,62 @@
 
 ### Development
 
-Launch the virtual environment with :
+#### Front-end
+
+Install dependencies :
 
 ```bash
-pipenv install
+npm install
 ```
 
-Then :
+Launch the development server with : 
+```bash
+npm run watch
+```
+
+#### Back-end
+```bash
+npm install
+```
 
 ```bash
-FLASK_APP=main.py flask run
+npm run build
 ```
+
+Start scraping by running `python scrap.py` with a proper config.ini in the same directory, e.g :
+
+```
+[credentials]
+api_key = ABCDEFGHIJKLMNOPQSRTUVW
+
+[civiweb]
+offer_list = https://www.civiweb.com/FR/offre-liste/page/
+offer_page = https://www.civiweb.com/FR/offre/
+
+[db]
+database = my_database
+hostname = localhost
+port = 5432
+username = my_username
+password = my_password
+```
+
+### Production
+#### Front-end
+
+In production, use `npm run build` then serve the index.html with the dist folder with any web server.
+
+#### Back-end
+
+Run the scrapper as a CRON job.
+Inclure full paths to avoid $PATH errors, and include stderr in the log file.
+
+```bash
+crontab -e
+0 1 */5 * * /usr/bin/env python3.6 /home/user/scrap/scrap.py >> /home/user/scrap/scrap.log 2>&1
+```
+
+Build the NodeJS app with `npm run build` then start the server with `forever` or `pm2`.
 
 ## Play with data 
 

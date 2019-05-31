@@ -6,6 +6,7 @@ import {
     showBasicFeatureInfo
 } from './js/functions';
 import './scss/main.scss';
+import VieMenu from './js/vie-menu';
 
 var map = initMap();
 
@@ -14,3 +15,5 @@ updateOffers(map);
 
 // Show basic offer information on hover
 map.on('pointermove', showBasicFeatureInfo);
+
+map.addControl(new VieMenu());

@@ -1,0 +1,66 @@
+$menu-width: 500px;
+$background-color: white;
+$color: white;
+$toggle-menu-width: 40px;
+$border-color: grey;
+
+.ol-vie-menu {
+    left: calc(#{$toggle-menu-width} - #{$menu-width});
+    top: 0px;
+    width: $menu-width;
+    height: 100%;
+    padding: 0px;
+    transition: all .3s ease;
+    background-color: transparent;
+    display: flex;
+    font-family: sans-serif, Times;
+
+    &:hover {
+        background-color: transparent;
+    }
+
+    &.active {
+        transition: all .3s ease; 
+        transform: translateX(calc(#{$menu-width} - #{$toggle-menu-width}));
+        -webkit-transform: translateX(calc(#{$menu-width} - #{$toggle-menu-width}));
+        margin-right: 10px;
+
+        .menu-container {
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+        }
+    }
+    .toggle-menu {
+        height: 80px;
+        width: $toggle-menu-width;
+        background-color: $background-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 5px 5px 0px;
+        cursor: pointer;
+        margin-top: 10px;
+        position: relative;
+        border-top: 1px solid $border-color;
+        border-right: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        right: 1px;
+        
+    }
+    
+    .menu-container {
+        background-color: $background-color;
+        height: 100%;
+        display: flex;
+        flex: 1;
+        position: relative;
+        border-right: 1px solid $border-color;
+    }
+}

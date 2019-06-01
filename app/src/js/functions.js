@@ -27,17 +27,23 @@ const overlayContainer = document.querySelector('#popup');
 /**
  * Update offers
  * @param {ol/Map} map 
+ * @param {Array} params
  */
-export async function updateOffers(map) {
-    const response = await get('/offers');
-    var vectorSource = new VectorSource({
+export async function updateOffers(map, params) {
+    const response = await get('/offers', params);
+    let vectorSource = new VectorSource({
         features: (new GeoJSON()).readFeatures(response.data)
     });
-    var vectorLayer = new VectorLayer({
-        source: vectorSource,
-        style: offerStyle
-    });
-    map.addLayer(vectorLayer);
+    let offerLayer = map.getLayerByName('offer-layer');
+    if (offerLayer) {
+        offerLayer.setSource(vectorSource)
+    } else {
+        map.addLayer(new VectorLayer({
+            source: vectorSource,
+            style: offerStyle,
+            name: 'offer-layer'
+        }));
+    }
 }
 
 /**
@@ -59,7 +65,7 @@ function offerStyle(feature) {
  * Initialize and return a new Map object, with a shared pop-up overlay object
  */
 export function initMap() {
-    return new Map({
+    let map = new Map({
         target: 'map',
         layers: [
             new TileLayer({
@@ -73,6 +79,12 @@ export function initMap() {
         }),
         overlays: [BasicOverlay()]
     });
+
+    // Register custom functions
+
+    map.removeLayerByName = removeLayerByName;
+    map.getLayerByName = getLayerByName;
+    return map;
 }
 
 /**
@@ -108,6 +120,26 @@ function buildHtmlFromFeature(properties) {
     `;
 }
 
+/**
+ * Opens the offer in a new tab on click
+ * @param {String} civiwebId 
+ */
 function onOverlayClick(civiwebId) {
     window.open(`https://www.civiweb.com/FR/offre/${civiwebId}.aspx`, '_blank');
+}
+
+/**
+ * Retrieve a layer by its given name
+ * @param {String} name 
+ */
+function getLayerByName(name) {
+    return this.getLayers().getArray().find(layer => layer.getProperties().name === name);
+}
+
+/**
+ * Remove a layer by its name
+ * @param {String} name 
+ */
+function removeLayerByName(name) {
+    this.removeLayer(this.getLayerByName(name));
 }

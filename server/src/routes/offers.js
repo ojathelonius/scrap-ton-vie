@@ -41,6 +41,9 @@ export default () => {
                     : ''}
                 ) AS f
         `, params);
+        if(result.rows[0].features == null) {
+            result.rows[0].features = [];
+        }
         res.send(result.rows[0]);
     });
 

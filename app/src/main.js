@@ -16,4 +16,8 @@ updateOffers(map);
 // Show basic offer information on hover
 map.on('pointermove', showBasicFeatureInfo);
 
-map.addControl(new VieMenu());
+map.addControl(new VieMenu({
+    onSearch: function (data) {
+        updateOffers(map, data.split(' '));
+    }
+}));

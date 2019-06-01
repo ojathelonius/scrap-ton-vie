@@ -59,8 +59,23 @@ $border-color: grey;
         background-color: $background-color;
         height: 100%;
         display: flex;
+        flex-direction: column;
         flex: 1;
         position: relative;
         border-right: 1px solid $border-color;
+        padding: 20px;
+
+        h5 {
+            text-align: center;
+        }
+    }
+}
+
+.ol-zoom {
+    left: initial;
+    right: .5em;
+
+    .ol-zoom-in, .ol-zoom-out {
+        cursor: pointer;
     }
 }

@@ -21,10 +21,15 @@ gmaps = googlemaps.Client(key=config['credentials']['api_key'])
 cur.execute('TRUNCATE offer')
 conn.commit()
 
-# Browsing through pages (currently around 238)
-for page_id in range(1, 240):
+first_page = requests.get(
+        config['civiweb']['offer_list'] + '1.aspx')
+soup = BeautifulSoup(first_page.text, 'html.parser')
+total_pages = soup.find(class_='pagination').contents[12].find('a')['href'].split('/FR/offre-liste/page/')[1].split('.aspx')[0]
 
-    print('Scraping page ' + str(page_id) + '...', flush=True)
+# Browsing through pages
+for page_id in range(1, int(total_pages)):
+
+    print('Scraping page ' + str(page_id) + ' out of ' + total_pages + '...', flush=True)
 
     page = requests.get(
         config['civiweb']['offer_list'] + str(page_id) + '.aspx')

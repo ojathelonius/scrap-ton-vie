@@ -21,15 +21,21 @@ const SalaryStyle = (color) => new Style({
 });
 
 const FeatureStyles = {
-    'LowSalaryStyle': SalaryStyle('#ffe000'),
-    'MediumSalaryStyle': SalaryStyle('#ea8d00'),
-    'HighSalaryStyle': SalaryStyle('#ea3600')
+    'SalaryStyle1': SalaryStyle('#FF0000'),
+    'SalaryStyle2': SalaryStyle('#FFDA00'),
+    'SalaryStyle3': SalaryStyle('#FFB600'),
+    'SalaryStyle4': SalaryStyle('#FF9100'),
+    'SalaryStyle5': SalaryStyle('#FF6D00'),
+    'SalaryStyle6': SalaryStyle('#FF4800'),
+    'SalaryStyle7': SalaryStyle('#FF2400'),
+    'SalaryStyle8': SalaryStyle('#FF0000')
 };
 
 // 
 /**
  * Calculate color scale for each salary
  * Disabled for performance reasons (recalculates color for each salary, could be fixed by caching results)
+ * (also, it didn't look that good)
  * @param {Number} salary 
  */
 function calculateSalaryStyle(salary) {

@@ -51,13 +51,23 @@ export async function updateOffers(map, params) {
  * @param {ol/Feature} feature 
  */
 function offerStyle(feature) {
-    let properties = feature.getProperties();
-    if (properties.salary < 2049) {
-        return FeatureStyles.LowSalaryStyle;
-    } else if (properties.salary > 2468) {
-        return FeatureStyles.HighSalaryStyle;
-    } else {
-        return FeatureStyles.MediumSalaryStyle;
+    let salary = feature.getProperties().salary;
+    if (salary < 1695) {
+        return FeatureStyles.SalaryStyle1;
+    } else if (salary < 1970) {
+        return FeatureStyles.SalaryStyle2;
+    } else if (salary < 2133) {
+        return FeatureStyles.SalaryStyle3;
+    } else if (salary < 2290) {
+        return FeatureStyles.SalaryStyle4;
+    } else if (salary < 2462) {
+        return FeatureStyles.SalaryStyle5;
+    } else if (salary < 2723) {
+        return FeatureStyles.SalaryStyle6;
+    } else if (salary < 3185) {
+        return FeatureStyles.SalaryStyle7;
+    }  else {
+        return FeatureStyles.SalaryStyle8;
     }
 }
 

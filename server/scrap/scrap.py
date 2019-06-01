@@ -52,7 +52,8 @@ for page_id in range(1, 240):
         lat = None
         lon = None
 
-        if(geocode_result):
+        # Make sure the result is not in France, because some offers are not properly located. Use country as a fallback
+        if(geocode_result and ("france" not in str.lower(geocode_result[0]['formatted_address']))):
             lat = geocode_result[0]['geometry']['location']['lat']
             lon = geocode_result[0]['geometry']['location']['lng']
         else:

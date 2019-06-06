@@ -39,8 +39,15 @@ export default class VieMenu extends Control {
         this.searchInput.className = 'input';
         menuContainer.appendChild(this.createField(this.searchInput, 'Term search', 'Search for any terms, separated by spaces.'));
 
+        let buttonContainer = document.createElement('div');
+        buttonContainer.className = 'controls-container';
+        menuContainer.appendChild(buttonContainer);
+
+        let clearButton = this.createButton('Clear', options.onClear);
+        buttonContainer.appendChild(clearButton);
+
         let searchButton = this.createButton('Search', options.onSearch);
-        menuContainer.appendChild(searchButton);
+        buttonContainer.appendChild(searchButton);
 
         // Show menu by default
         this.toggleMenu();

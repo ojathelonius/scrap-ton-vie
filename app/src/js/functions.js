@@ -46,6 +46,8 @@ export async function updateOffers(map, params) {
             name: 'offer-layer'
         }));
     }
+    // Close popup since it might not be relevant anymore
+    map.getOverlayById('basic-overlay').setPosition(undefined);
 }
 
 /**

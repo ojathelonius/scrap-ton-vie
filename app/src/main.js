@@ -19,5 +19,8 @@ map.on('pointermove', showBasicFeatureInfo);
 map.addControl(new VieMenu({
     onSearch: function (data) {
         updateOffers(map, data.split(' '));
+    },
+    onClear: function() {
+        updateOffers(map);
     }
 }));

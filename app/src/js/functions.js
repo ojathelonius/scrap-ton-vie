@@ -21,8 +21,10 @@ import {
 } from './styles';
 
 
-// Only look for overlayContainer in DOM once
-const overlayContainer = document.querySelector('#popup');
+// Only look for contentContainer in DOM once
+const popupContainer = document.querySelector('#popup');
+const contentContainer = document.querySelector('#popup .content-container');
+const popupCloser = document.querySelector('#popup-closer');
 
 /**
  * Update offers
@@ -107,9 +109,13 @@ export function showBasicFeatureInfo(event) {
         }
     });
     if (feature) {
-        overlayContainer.innerHTML = buildHtmlFromFeature(feature.getProperties());
-        overlayContainer.onclick = () => onOverlayClick(feature.getProperties().civiweb_id);
-        this.getOverlayById('basicOverlay').setPosition(feature.getGeometry().getCoordinates());
+        contentContainer.innerHTML = buildHtmlFromFeature(feature.getProperties());
+        popupCloser.onclick = (evt) => {
+            // evt.stopPropagation() should work here
+            this.getOverlayById('basic-overlay').setPosition(undefined);
+        }
+        popupContainer.onclick = (evt) => onOverlayClick(evt, feature.getProperties().civiweb_id);
+        this.getOverlayById('basic-overlay').setPosition(feature.getGeometry().getCoordinates());
         this.getTargetElement().style.cursor = 'pointer';
     } else if (this.getTargetElement().style.cursor == 'pointer') {
         // Only change back cursor if it is a pointer
@@ -132,10 +138,15 @@ function buildHtmlFromFeature(properties) {
 
 /**
  * Opens the offer in a new tab on click
+ * @param {Event} event
  * @param {String} civiwebId 
  */
-function onOverlayClick(civiwebId) {
-    window.open(`https://www.civiweb.com/FR/offre/${civiwebId}.aspx`, '_blank');
+function onOverlayClick(event, civiwebId) {
+    // This should not be necessary if using stopPropagation() on the closer event, but it does not seem to work ¯\_(ツ)_/¯
+    if(event.target != popupCloser) {
+        window.open(`https://www.civiweb.com/FR/offre/${civiwebId}.aspx`, '_blank');
+    }
+    
 }
 
 /**

@@ -49,7 +49,7 @@ function calculateSalaryStyle(salary) {
  * @param {ol/Feature} feature 
  */
 const BasicOverlay = (feature) => new Overlay({
-    id: 'basicOverlay',
+    id: 'basic-overlay',
     element: document.querySelector('#popup'),
     autoPan: true,
     autoPanAnimation: {

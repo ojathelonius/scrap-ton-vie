@@ -67,6 +67,24 @@ body {
     .subtitle {
         margin-bottom: 0.5rem;
     }
+
+    .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 2px;
+        right: 8px;
+        color: black;
+        transition: all .1s ease-in-out;
+
+        &:after {
+            content: "✖";
+        }
+
+        &:hover {
+            transform: scale(1.05);
+            top: 3px;
+        }
+    }
 }
 
 .ol-attribution {

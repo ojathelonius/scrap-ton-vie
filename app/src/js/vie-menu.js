@@ -1,4 +1,4 @@
-import Control from 'ol/control/control';
+import Control from 'ol/control/Control';
 import '../scss/vie-menu.scss';
 
 export default class VieMenu extends Control {

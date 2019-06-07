@@ -3,6 +3,7 @@ import requests
 import googlemaps
 import psycopg2
 import configparser
+from random import randint
 
 # Fetching configuration
 config = configparser.ConfigParser()
@@ -68,6 +69,12 @@ for page_id in range(1, int(total_pages)):
                 lat = geocode_result[0]['geometry']['location']['lat']
                 lon = geocode_result[0]['geometry']['location']['lng']
 
+        # Randomize coordinates to avoid stacking features on top of eachother
+        if(lat):
+            lat = (lat + randint(-100, 100)/3000)
+        if(lon):
+            lon = (lon + randint(-100, 100)/3000)
+        
         data = (civiweb_id, position, company, country,
                 city, lat, lon, salary, description)
         cur.execute(

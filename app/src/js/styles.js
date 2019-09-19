@@ -21,7 +21,7 @@ const SalaryStyle = (color) => new Style({
 });
 
 const FeatureStyles = {
-    'SalaryStyle1': SalaryStyle('#FF0000'),
+    'SalaryStyle1': SalaryStyle('#FFFF00'),
     'SalaryStyle2': SalaryStyle('#FFDA00'),
     'SalaryStyle3': SalaryStyle('#FFB600'),
     'SalaryStyle4': SalaryStyle('#FF9100'),

@@ -16,11 +16,19 @@ updateOffers(map);
 // Show basic offer information on hover
 map.on('pointermove', showBasicFeatureInfo);
 
+document.getElementById('popup').addEventListener('mouseover', () => {
+    map.isHoveringOverlay = true;
+});
+
+document.getElementById('popup').addEventListener('mouseout', () => {
+    map.isHoveringOverlay = false;
+})
+
 map.addControl(new VieMenu({
     onSearch: function (data) {
         updateOffers(map, data.split(' '));
     },
-    onClear: function() {
+    onClear: function () {
         updateOffers(map);
     }
 }));

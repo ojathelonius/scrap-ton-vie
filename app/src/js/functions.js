@@ -70,7 +70,7 @@ function offerStyle(feature) {
         return FeatureStyles.SalaryStyle6;
     } else if (salary < 3185) {
         return FeatureStyles.SalaryStyle7;
-    }  else {
+    } else {
         return FeatureStyles.SalaryStyle8;
     }
 }
@@ -119,9 +119,17 @@ export function showBasicFeatureInfo(event) {
         popupContainer.onclick = (evt) => onOverlayClick(evt, feature.getProperties().civiweb_id);
         this.getOverlayById('basic-overlay').setPosition(feature.getGeometry().getCoordinates());
         this.getTargetElement().style.cursor = 'pointer';
+
+        // saving pixel locally
+        this.pixels = event.pixel;
+
     } else if (this.getTargetElement().style.cursor == 'pointer') {
         // Only change back cursor if it is a pointer
         this.getTargetElement().style.cursor = '';
+    } else if (this.pixels && !this.isHoveringOverlay) {
+        if (calculateDistance(this.pixels, event.pixel) > 100) {
+            this.getOverlayById('basic-overlay').setPosition(undefined);
+        }
     }
 }
 
@@ -145,10 +153,10 @@ function buildHtmlFromFeature(properties) {
  */
 function onOverlayClick(event, civiwebId) {
     // This should not be necessary if using stopPropagation() on the closer event, but it does not seem to work ¯\_(ツ)_/¯
-    if(event.target != popupCloser) {
+    if (event.target != popupCloser) {
         window.open(`https://www.civiweb.com/FR/offre/${civiwebId}.aspx`, '_blank');
     }
-    
+
 }
 
 /**
@@ -165,4 +173,13 @@ function getLayerByName(name) {
  */
 function removeLayerByName(name) {
     this.removeLayer(this.getLayerByName(name));
+}
+
+/**
+ * Calculate distance between [a1,a2] and [b1,b2]
+ * @param {Array} pixelsA 
+ * @param {Array} pixelsB 
+ */
+function calculateDistance(pixelsA, pixelsB) {
+    return Math.abs(pixelsB[1] - pixelsA[1]) + Math.abs(pixelsB[0] - pixelsA[0]);
 }

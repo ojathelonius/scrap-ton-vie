@@ -29,6 +29,7 @@ export default () => {
                                 position,
                                 company,
                                 country,
+                                industry,
                                 city,
                                 salary,
                                 civiweb_id

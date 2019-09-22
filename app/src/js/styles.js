@@ -2,7 +2,8 @@ import {
     Fill,
     Stroke,
     Style,
-    Circle
+    Circle,
+    Text
 } from 'ol/style.js';
 import Overlay from 'ol/Overlay.js';
 
@@ -30,6 +31,8 @@ const FeatureStyles = {
     'SalaryStyle7': SalaryStyle('#FF2400'),
     'SalaryStyle8': SalaryStyle('#FF0000')
 };
+
+
 
 // 
 /**

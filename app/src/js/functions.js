@@ -17,14 +17,19 @@ import {
 } from './api';
 import {
     FeatureStyles,
+    IndustryStyles,
     BasicOverlay
 } from './styles';
+import Industries from './Industries';
+
+import IndustryStyle from './IndustryStyle';
 
 
 // Only look for contentContainer in DOM once
 const popupContainer = document.querySelector('#popup');
 const contentContainer = document.querySelector('#popup .content-container');
 const popupCloser = document.querySelector('#popup-closer');
+let styleCache = [];
 
 /**
  * Update offers
@@ -42,7 +47,7 @@ export async function updateOffers(map, params) {
     } else {
         map.addLayer(new VectorLayer({
             source: vectorSource,
-            style: offerStyle,
+            style: industryStyle,
             name: 'offer-layer'
         }));
     }
@@ -73,6 +78,117 @@ function offerStyle(feature) {
     } else {
         return FeatureStyles.SalaryStyle8;
     }
+}
+
+function industryStyle(feature) {
+    let industry = feature.getProperties().industry;
+
+    if (styleCache[industry]) {
+        return styleCache[industry];
+    } else {
+        switch (industry) {
+            case Industries.ADVERTISING:
+                styleCache[industry] = new IndustryStyle('\uf641');
+                break;
+
+            case Industries.ARTS:
+                styleCache[industry] = new IndustryStyle('\uf1fc');
+                break;
+
+            case Industries.BEAUTY:
+                styleCache[industry] = new IndustryStyle('\uf587');
+                break;
+
+            case Industries.BIOLOGY:
+                styleCache[industry] = new IndustryStyle('\uf0c3');
+                break;
+
+            case Industries.BUSINESS:
+                styleCache[industry] = new IndustryStyle('\uf0b1');
+                break;
+
+            case Industries.CONSTRUCTION:
+                styleCache[industry] = new IndustryStyle('\uf807');
+                break;
+
+            case Industries.COMPUTER_SCIENCE:
+                styleCache[industry] = new IndustryStyle('\uf5fc');
+                break;
+
+            case Industries.ELECTRONICS:
+                styleCache[industry] = new IndustryStyle('\uf2db');
+                break;
+
+            case Industries.FINANCE:
+                styleCache[industry] = new IndustryStyle('\uf155');
+                break;
+
+            case Industries.HEALTH:
+                styleCache[industry] = new IndustryStyle('\uf21e');
+                break;
+
+            case Industries.HOUSING:
+                styleCache[industry] = new IndustryStyle('\uf015');
+                break;
+
+            case Industries.HUMAN_RESOURCES:
+                styleCache[industry] = new IndustryStyle('\uf0c0');
+                break;
+
+            case Industries.HUMANITARIAN:
+                styleCache[industry] = new IndustryStyle('\uf4c4');
+                break;
+
+            case Industries.JOURNALISM:
+                styleCache[industry] = new IndustryStyle('\uf1ea');
+                break;
+
+            case Industries.LAW:
+                styleCache[industry] = new IndustryStyle('\uf0e3');
+                break;
+
+            case Industries.LITERATURE:
+                styleCache[industry] = new IndustryStyle('\uf02d');
+                break;
+
+            case Industries.LOGISTICS:
+                styleCache[industry] = new IndustryStyle('\uf494');
+                break;
+
+            case Industries.MATHEMATICS:
+                styleCache[industry] = new IndustryStyle('\uf698');
+                break;
+
+            case Industries.MECHANICS:
+                styleCache[industry] = new IndustryStyle('\uf568');
+                break;
+
+            case Industries.MEDIA:
+                styleCache[industry] = new IndustryStyle('\uf87c');
+                break;
+
+            case Industries.POLITICS:
+                styleCache[industry] = new IndustryStyle('\uf66f');
+                break;
+
+            case Industries.SPORTS:
+                styleCache[industry] = new IndustryStyle('\uf1e3');
+                break;
+
+            case Industries.TEACHING:
+                styleCache[industry] = new IndustryStyle('\uf51c');
+                break;
+
+            case Industries.TOURISM:
+                styleCache[industry] = new IndustryStyle('\uf7a2');
+                break;
+            default:
+                styleCache[industry] = new IndustryStyle('\uf128');
+                break;
+        }
+        return styleCache[industry];
+    }
+
 }
 
 /**
@@ -131,7 +247,7 @@ export function showBasicFeatureInfo(event) {
         this.getTargetElement().style.cursor = '';
     } else if (this.pixels && !this.isHoveringOverlay) {
         if (calculateDistance(this.pixels, event.pixel) > 100) {
-            this.getOverlayById('basic-overlay').setPosition(undefined);
+            // this.getOverlayById('basic-overlay').setPosition(undefined);
         }
     }
 }
@@ -164,7 +280,7 @@ function buildHtmlFromFeature(properties) {
         <h5 class="title is-5">${properties.position}</h5>
         <h6 class="subtitle is-6">${properties.company}</h6>
         <div>Location: ${properties.city}, ${properties.country}</div>
-        <div>Salary: ${properties.salary}€</div>
+        <div >Salary: ${properties.salary}€</div>
     `;
 }
 

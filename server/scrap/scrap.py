@@ -40,13 +40,14 @@ for page_id in range(1, int(total_pages)):
     # Browsing through links
     for link in links:
         civiweb_id = link.get('href').split('/FR/offre/')[1].split('.aspx')[0]
-
         offer_page = requests.get(
             config['civiweb']['offer_page'] + str(civiweb_id) + '.aspx')
         offer_soup = BeautifulSoup(offer_page.text, 'html.parser')
         position = offer_soup.find(id='ContenuPrincipal_BlocA1_m_oTitle').text
         country = offer_soup.find(id='ContenuPrincipal_BlocA1_m_oContry').text
         city = offer_soup.find(id='ContenuPrincipal_BlocA1_m_oCity').text
+        skillsStr = offer_soup.find(id='ContenuPrincipal_BlocB1_m_oCompetence').text
+        skills = list(map(lambda domaine: domaine.strip(" "), skillsStr.split(",")))
         company = offer_soup.find(
             id='ContenuPrincipal_BlocA1_m_oOrganization').text
         salary = offer_soup.find(
@@ -74,11 +75,13 @@ for page_id in range(1, int(total_pages)):
             lat = (lat + randint(-100, 100)/3000)
         if(lon):
             lon = (lon + randint(-100, 100)/3000)
-        
-        data = (civiweb_id, position, company, country,
+        cur.execute('SELECT industry FROM skill_industry WHERE skill IN %s', (tuple(skills),))
+        industry = cur.fetchone()[0]
+        print(industry, flush=True)
+        data = (civiweb_id, position, company, industry, country,
                 city, lat, lon, salary, description)
         cur.execute(
-            'INSERT INTO offer(civiweb_id, position, company, country, city, lat, lon, salary, description) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)', data)
+            'INSERT INTO offer(civiweb_id, position, company, industry, country, city, lat, lon, salary, description) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', data)
 
     # Commit transaction for every page
     conn.commit()

@@ -108,15 +108,15 @@ function industryStyle(feature) {
                 break;
 
             case Industries.CONSTRUCTION:
-                styleCache[industry] = new IndustryStyle('\uf807');
+                styleCache[industry] = new IndustryStyle('\uf0ad');
                 break;
 
             case Industries.COMPUTER_SCIENCE:
-                styleCache[industry] = new IndustryStyle('\uf5fc');
+                styleCache[industry] = new IndustryStyle('\uf109');
                 break;
 
             case Industries.ELECTRONICS:
-                styleCache[industry] = new IndustryStyle('\uf2db');
+                styleCache[industry] = new IndustryStyle('\uf0e7');
                 break;
 
             case Industries.FINANCE:
@@ -152,7 +152,7 @@ function industryStyle(feature) {
                 break;
 
             case Industries.LOGISTICS:
-                styleCache[industry] = new IndustryStyle('\uf494');
+                styleCache[industry] = new IndustryStyle('\uf0d1');
                 break;
 
             case Industries.MATHEMATICS:
@@ -160,11 +160,11 @@ function industryStyle(feature) {
                 break;
 
             case Industries.MECHANICS:
-                styleCache[industry] = new IndustryStyle('\uf568');
+                styleCache[industry] = new IndustryStyle('\uf085');
                 break;
 
             case Industries.MEDIA:
-                styleCache[industry] = new IndustryStyle('\uf87c');
+                styleCache[industry] = new IndustryStyle('\uf292');
                 break;
 
             case Industries.POLITICS:
@@ -176,7 +176,7 @@ function industryStyle(feature) {
                 break;
 
             case Industries.TEACHING:
-                styleCache[industry] = new IndustryStyle('\uf51c');
+                styleCache[industry] = new IndustryStyle('\uf19d');
                 break;
 
             case Industries.TOURISM:

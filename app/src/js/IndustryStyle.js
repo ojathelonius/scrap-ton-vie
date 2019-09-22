@@ -13,12 +13,12 @@ export default class IndustryStyle extends Style {
 
         this.setText(new Text({
             text: unicodeStr,
-            font: 'normal 14px FontAwesome',
+            font: 'normal 16px FontAwesome',
             textBaseline: 'bottom',
             fill: new Fill({
                 color: 'rgba(64, 64, 64, 0.9)',
             }),
-            stroke: new Stroke({color: '#BA996F', width: 1})
+            stroke: new Stroke({color: '#BA996F', width: 2})
         }))
 
     }

@@ -48,50 +48,50 @@ export default class Industries {
     }
 
     static get HUMANITARIAN () {
-        return "HUMANITARIAN";
+        return "Humanitarian";
     }
 
     static get JOURNALISM () {
-        return "JOURNALISM";
+        return "Journalism";
     }
 
     static get LAW () {
-        return "LAW";
+        return "Law";
     }
 
     static get LITERATURE () {
-        return "LITERATURE";
+        return "Literature";
     }
 
     static get LOGISTICS () {
-        return "LOGISTICS";
+        return "Logistics";
     }
 
     static get MATHEMATICS () {
-        return "MATHEMATICS";
+        return "Mathematics";
     }
 
     static get MECHANICS () {
-        return "MECHANICS";
+        return "Mechanics";
     }
 
     static get MEDIA () {
-        return "MEDIA";
+        return "Media";
     }
 
     static get POLITICS () {
-        return "POLITICS";
+        return "Politics";
     }
 
     static get SPORTS () {
-        return "SPORTS";
+        return "Sports";
     }
 
     static get TEACHING () {
-        return "TEACHING";
+        return "Teaching";
     }
 
     static get TOURISM () {
-        return "TOURISM";
+        return "Tourism";
     }
 }

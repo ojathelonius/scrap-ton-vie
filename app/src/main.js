@@ -3,7 +3,8 @@ import '@babel/polyfill';
 import {
     initMap,
     updateOffers,
-    showBasicFeatureInfo
+    showBasicFeatureInfo,
+    animateHud
 } from './js/functions';
 import './scss/main.scss';
 import VieMenu from './js/vie-menu';
@@ -24,11 +25,13 @@ document.getElementById('popup').addEventListener('mouseout', () => {
     map.isHoveringOverlay = false;
 })
 
-map.addControl(new VieMenu({
-    onSearch: function (data) {
-        updateOffers(map, data.split(' '));
-    },
-    onClear: function () {
-        updateOffers(map);
-    }
-}));
+document.addEventListener('mousemove', animateHud);
+
+// map.addControl(new VieMenu({
+//     onSearch: function (data) {
+//         updateOffers(map, data.split(' '));
+//     },
+//     onClear: function () {
+//         updateOffers(map);
+//     }
+// }));

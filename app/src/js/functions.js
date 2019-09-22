@@ -83,7 +83,9 @@ export function initMap() {
         target: 'map',
         layers: [
             new TileLayer({
-                source: new OSM()
+                source: new XYZ({
+                    url: 'https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib2phdGhlbG9uaXVzIiwiYSI6ImNpbzV0bXVmNDAwNHV2eWtwa2ZycnhrMXIifQ.6YqVmLEfFdRV4k9a_KY5gg'
+                })
             })
         ],
         view: new View({
@@ -91,7 +93,8 @@ export function initMap() {
             center: [782715.169640, 6203017.719399],
             zoom: 4
         }),
-        overlays: [BasicOverlay()]
+        overlays: [BasicOverlay()],
+        controls: []
     });
 
     // Register custom functions
@@ -131,6 +134,25 @@ export function showBasicFeatureInfo(event) {
             this.getOverlayById('basic-overlay').setPosition(undefined);
         }
     }
+}
+
+export function animateHud(event) {
+    let offsetX = (event.clientX - screen.width / 2) / 200;
+    let offsetY = (event.clientY - screen.height / 2) / 200;
+    let boxes = document.getElementsByClassName('box');
+    for (let box of boxes) {
+        // Can't retrieve originalRotation due to getComputedStyle returning a matrix instead of readable transform properties
+        let originalRotation = '';
+        if (box.classList.contains('title-box')) {
+            originalRotation = 'rotate(3deg)';
+        } else if (box.classList.contains('github-box')) {
+            originalRotation = 'rotate(-3deg)';
+        }
+
+        box.style.transform = `translate(${offsetX}px, ${offsetY}px) ${originalRotation}`;
+    }
+
+    // map.getView().setCenter([map.getView().getCenter()[0] - offsetX*2000, map.getView().getCenter()[1] + offsetY*2000]);
 }
 
 /**

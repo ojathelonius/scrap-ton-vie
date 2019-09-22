@@ -3,21 +3,26 @@
 
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/augmented-ui/augmented.css">
   <link rel="stylesheet" href="dist/scrap-ton-vie.css" type="text/css">
   <title>Scrap ton VIE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <div class="box title-box">
-    <h1 class="title">Scrap ton VIE</h1>
+  <div class="box title-box" augmented-ui="bl-clip tl-clip-y br-clip-y exe" id="title-box">
+    <h1 class="title"><em data-text="Scrap ton VIE" class="glitch">Scrap ton VIE</em></h1>
+  </div>
+  <div class="box github-box" augmented-ui="tl-clip br-clip exe" id="github-box">
+    <h1 class="title"><a href="https://github.com/ojathelonius/scrap-ton-vie"><em data-text="View on GitHub" class="glitch">View on GitHub</em></a></h1>
   </div>
   <div id="map" class="map"></div>
-  <div id="popup" class="ol-popup">
+  <div id="popup" class="ol-popup"> 
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div class="content-container"></div>
   </div>
 </body>
 <script src="dist/scrap-ton-vie.js"></script>
+
 
 </html>

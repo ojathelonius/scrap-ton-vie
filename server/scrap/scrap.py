@@ -75,8 +75,9 @@ for page_id in range(1, int(total_pages)):
             lat = (lat + randint(-100, 100)/3000)
         if(lon):
             lon = (lon + randint(-100, 100)/3000)
-        cur.execute('SELECT industry FROM skill_industry WHERE skill IN %s', (tuple(skills),))
-        industry = cur.fetchone()[0]
+        if skills:
+            cur.execute('SELECT industry FROM skill_industry WHERE skill IN %s', (tuple(skills),))
+            industry = cur.fetchone()[0]
         data = (civiweb_id, position, company, industry, country,
                 city, lat, lon, salary, description)
         cur.execute(

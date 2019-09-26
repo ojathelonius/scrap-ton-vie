@@ -14,6 +14,16 @@ module.exports = {
             exclude: /node_modules/,
             loader: "babel-loader"
         }, {
+            test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: 'fonts',
+                    publicPath: 'fonts'
+                }
+            }]
+        }, {
             test: /\.scss$/,
             exclude: /node_modules/,
             use: [

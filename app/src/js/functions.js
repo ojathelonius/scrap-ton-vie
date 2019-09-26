@@ -108,15 +108,15 @@ function industryStyle(feature) {
                 break;
 
             case Industries.CONSTRUCTION:
-                styleCache[industry] = new IndustryStyle('\uf0ad');
+                styleCache[industry] = new IndustryStyle('\uf807');
                 break;
 
             case Industries.COMPUTER_SCIENCE:
-                styleCache[industry] = new IndustryStyle('\uf109');
+                styleCache[industry] = new IndustryStyle('\uf5fc');
                 break;
 
             case Industries.ELECTRONICS:
-                styleCache[industry] = new IndustryStyle('\uf0e7');
+                styleCache[industry] = new IndustryStyle('\uf2db');
                 break;
 
             case Industries.FINANCE:
@@ -152,7 +152,7 @@ function industryStyle(feature) {
                 break;
 
             case Industries.LOGISTICS:
-                styleCache[industry] = new IndustryStyle('\uf0d1');
+                styleCache[industry] = new IndustryStyle('\uf494');
                 break;
 
             case Industries.MATHEMATICS:

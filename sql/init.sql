@@ -239,6 +239,7 @@ INSERT INTO skill_industry(skill, industry) VALUES('Intégration progiciel', 'CS
 INSERT INTO skill_industry(skill, industry) VALUES('Graphisme - Imprimerie', 'Arts');
 INSERT INTO skill_industry(skill, industry) VALUES('Textile', 'Business');
 INSERT INTO skill_industry(skill, industry) VALUES('Hydraulique - Thermique', 'Mechanics');
+INSERT INTO skill_industry(skill, industry) VALUES('Modélisme - Stylisme', 'Arts');
 
 
 

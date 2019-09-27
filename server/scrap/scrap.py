@@ -31,7 +31,7 @@ total_pages = soup.find(class_='pagination').contents[12].find('a')['href'].spli
 for page_id in range(1, int(total_pages)):
 
     print('Scraping page ' + str(page_id) + ' out of ' + total_pages + '...', flush=True)
-
+    
     page = requests.get(
         config['civiweb']['offer_list'] + str(page_id) + '.aspx')
     soup = BeautifulSoup(page.text, 'html.parser')
@@ -77,7 +77,11 @@ for page_id in range(1, int(total_pages)):
             lon = (lon + randint(-100, 100)/3000)
         if skills:
             cur.execute('SELECT industry FROM skill_industry WHERE skill IN %s', (tuple(skills),))
-            industry = cur.fetchone()[0]
+            optIndustry = cur.fetchone()
+            if optIndustry is not None:
+                industry = optIndustry
+            else:
+                industry = ''    
         data = (civiweb_id, position, company, industry, country,
                 city, lat, lon, salary, description)
         cur.execute(

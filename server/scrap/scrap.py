@@ -23,7 +23,7 @@ cur.execute('TRUNCATE offer')
 conn.commit()
 
 first_page = requests.get(
-        config['civiweb']['offer_list'] + '1.aspx')
+        config['civiweb']['offer_list'] + '1.aspx', verify=False)
 soup = BeautifulSoup(first_page.text, 'html.parser')
 total_pages = soup.find(class_='pagination').contents[12].find('a')['href'].split('/FR/offre-liste/page/')[1].split('.aspx')[0]
 
@@ -33,7 +33,7 @@ for page_id in range(1, int(total_pages)):
     print('Scraping page ' + str(page_id) + ' out of ' + total_pages + '...', flush=True)
     
     page = requests.get(
-        config['civiweb']['offer_list'] + str(page_id) + '.aspx')
+        config['civiweb']['offer_list'] + str(page_id) + '.aspx', verify=False)
     soup = BeautifulSoup(page.text, 'html.parser')
     links = soup.find_all(class_='xt_offrelink')
 
@@ -41,7 +41,7 @@ for page_id in range(1, int(total_pages)):
     for link in links:
         civiweb_id = link.get('href').split('/FR/offre/')[1].split('.aspx')[0]
         offer_page = requests.get(
-            config['civiweb']['offer_page'] + str(civiweb_id) + '.aspx')
+            config['civiweb']['offer_page'] + str(civiweb_id) + '.aspx', verify=False)
         offer_soup = BeautifulSoup(offer_page.text, 'html.parser')
         position = offer_soup.find(id='ContenuPrincipal_BlocA1_m_oTitle').text
         country = offer_soup.find(id='ContenuPrincipal_BlocA1_m_oContry').text

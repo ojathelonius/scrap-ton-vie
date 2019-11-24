@@ -4,6 +4,12 @@
 
 Scrap ton VIE aims at providing a convenient way to find VIE job offers. A development version lives at : https://vie.johanet.fr/
 
+Note : on 11/21/19, SSL certificates got messed up on the civiweb website. I had to skip verifying certificates, although this is probably going to be fixed. 
+To ignore urllib3 warning from `requests`, use :
+```bash
+export PYTHONWARNINGS="ignore:Unverified HTTPS request"
+```
+
 ## Development
 
 ### Front-end

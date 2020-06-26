@@ -37,9 +37,6 @@ npm run build
 Start scraping by running `python scrap.py` with a proper config.ini in the same directory, e.g :
 
 ```
-[credentials]
-api_key = ABCDEFGHIJKLMNOPQSRTUVW
-
 [civiweb]
 offer_list = https://www.civiweb.com/FR/offre-liste/page/
 offer_page = https://www.civiweb.com/FR/offre/

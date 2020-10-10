@@ -13,7 +13,7 @@ const port = 4000;
 
 app.use(function (req, res, next) {
     // Allow CORS for development purposes. In production, this is handled by Apache
-    if(process.env.NODE_ENV === 'development') {
+    if(process.env.NODE_ENV === 'develop') {
         res.header("Access-Control-Allow-Origin", "*");
     }
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

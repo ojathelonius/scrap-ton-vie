@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^0.18.1",
     "bulma": "^0.7.5",
-    "ol": "^5.3.3"
+    "ol": "^6.4.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",

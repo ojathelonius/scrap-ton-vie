@@ -15,7 +15,7 @@
   "author": "louis@johanet.fr",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "bulma": "^0.7.5",
     "ol": "^6.4.3"
   },
